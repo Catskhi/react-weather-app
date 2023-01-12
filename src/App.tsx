@@ -1,10 +1,11 @@
 import React from 'react';
+import DisplayCard from './components/Card/DisplayCard';
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <>
+        <DisplayCard/>
+    </>
   );
 }
 
