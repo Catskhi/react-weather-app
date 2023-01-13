@@ -6,6 +6,7 @@ export interface IDisplayCardProps {
 }
 
 export default function DisplayCard (props: IDisplayCardProps) {
+  console.log(process.env.REACT_APP_API_KEY)
   return (
     <div className={styles.flexCard}>
       <div className={styles.Card}>

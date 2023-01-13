@@ -37,6 +37,7 @@
 
 .title {
     padding: 30px;
+    margin-top: 15px;
     margin-bottom: -35px;
 }
 
@@ -55,9 +56,15 @@
     border: 0;
     border-radius: 10px;
     margin-top: 30px;
-    padding: 7px;
-    width: 55vw;
+    padding: 12px;
+    width: 60vw;
     transition: .3s;
+}
+
+@media screen and (min-width: 1000px) {
+    .searchInput {
+       width: 30vw !important;
+    }
 }
 
 .searchInput:focus {
@@ -66,10 +73,10 @@
 }
 
 .searchButton {
-    font-size: 18px;
-    padding: 7px;
+    font-size: 20px;
+    padding: 10px 12px 10px 12px;
     background-color: rgba(238, 228, 228, 0.322);
-    border-radius: 10px;
+    border-radius: 20px;
     margin-left: 10px;
     transition: .3s;
 }
