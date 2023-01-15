@@ -7,4 +7,18 @@
 body {
   margin: 0;
   background-color: aliceblue;
+  background: aliceblue;
+  transition: .3s;
+}
+
+.coldBackground {
+  background-color: rgb(98, 179, 255);
+}
+
+.neutralBackground {
+  background-color: rgb(132, 230, 255);
+}
+
+.hotBackground {
+  background-color: rgb(255, 211, 129);
 }

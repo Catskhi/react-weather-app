@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import SearchInput from './SearchInput';
 
 import styles from './DisplayCard.module.css'
+import ErrorMessage from './ErrorMessage';
+import BackgroundColorChanger from './BackgroundColorChanger';
 
 export interface IDisplayCardProps {
 }
 
 export default function DisplayCard (props: IDisplayCardProps) {
-  const [cityInputValue, setCityInputValue] = useState('')
+  const [cityInputValue, setCityInputValue] = useState<string>('')
   const [weatherData, setWeatherData] = useState<any>(null)
+  const [errorMessage, setErrorMessage] = useState<string>('')
   
   useEffect(() => {
     if (weatherData) {
@@ -28,19 +31,22 @@ export default function DisplayCard (props: IDisplayCardProps) {
       if (response.ok) {
         const data = await response.json()
         setWeatherData(data)
+        setErrorMessage('')
       } else {
-        alert('Invalid city name!')
+        setErrorMessage('Invalid city name!')
       }
     }
   }
 
   return (
     <div className={styles.centerCard}>
+      {weatherData && <BackgroundColorChanger temperature={weatherData.main.temp}/>}
       <div className={styles.Card}>
         <SearchInput cityInputValue={cityInputValue}
           setCityInputValue={setCityInputValue}
           fetchAPI={fetchAPI}
         />
+        <ErrorMessage errorMessage={errorMessage}/>
         <h1 className={styles.textLeft + ' ' + styles.title}>
             {weatherData !== null ? 'Weather in ' + weatherData.name : 'Search for a location to see it weather'}
         </h1>
