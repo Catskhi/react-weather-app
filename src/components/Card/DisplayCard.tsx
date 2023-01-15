@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
+import SearchInput from './SearchInput';
 
 import styles from './DisplayCard.module.css'
 
@@ -8,16 +9,12 @@ export interface IDisplayCardProps {
 export default function DisplayCard (props: IDisplayCardProps) {
   const [cityInputValue, setCityInputValue] = useState('')
   const [weatherData, setWeatherData] = useState<any>(null)
-
-  const handleChange = ((event : ChangeEvent<HTMLInputElement>) => {
-      setCityInputValue(event.target.value)
-  })
-
+  
   useEffect(() => {
     if (weatherData) {
       console.log(weatherData)
       console.log(weatherData.main.temp)
-      console.log(weatherData.weather[0].icon)
+      console.log(weatherData.wind.speed)
     }
   }, [weatherData])
 
@@ -35,31 +32,31 @@ export default function DisplayCard (props: IDisplayCardProps) {
   }
 
   return (
-    <div className={styles.flexCard}>
+    <div className={styles.centerCard}>
       <div className={styles.Card}>
-        <div>
-            <input className={styles.searchInput} type={'text'}
-            placeholder={'Search for a city...'}
-            value={cityInputValue}
-            onChange={handleChange}
-            ></input><i className={"bi bi-search " + styles.searchButton}
-              onClick={fetchAPI}
-            />
-        </div>
+        <SearchInput cityInputValue={cityInputValue}
+          setCityInputValue={setCityInputValue}
+          fetchAPI={fetchAPI}
+        />
         <h1 className={styles.textLeft + ' ' + styles.title}>
-            {weatherData !== null ? 'Weather in ' + weatherData.name : 'Search for a city to see it data'}
+            {weatherData !== null ? 'Weather in ' + weatherData.name : 'Search for a location to see it weather'}
         </h1>
         <h2 className={styles.centralize + ' ' + styles.weather}>
             {weatherData !== null ? weatherData.main.temp + ' °C' : ''}
         </h2>
-        <div className={styles.sideInformations}>
-          <div>
-            <i className={"bi bi-droplet-fill " + styles.dropIcon}></i>
-          </div>
-          <div>
-            {weatherData && <img src={'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '.png'}/>}
-          </div>
-        </div>
+        {weatherData && <div className={styles.sideInformations}>
+            <div className={styles.weatherInfo}>
+              <img 
+              className={styles.weatherIcon}
+              src={'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '.png'}/>{weatherData.weather[0].description}
+            </div>
+            <div className={styles.weatherInfo}>
+              <i className={"bi bi-droplet-fill " + styles.dropIcon}/>{weatherData.main.humidity}%
+            </div>
+            <div className={styles.weatherInfo}>
+              <i className={"bi bi-wind " + styles.windIcon}></i>{weatherData.wind.speed}km/h
+            </div>
+        </div>}
       </div>
     </div>
   );

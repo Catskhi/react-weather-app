@@ -1,9 +1,15 @@
-.flexCard {
-    display: flex;
+.centerCard {
+    display: grid;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    transition: .3s;
+    align-content: center;
+    min-height: 700px;
+    overflow-y: scroll;
+}
+
+@media screen and (min-width: 300px) {
+    .centerCard {
+        overflow: auto;
+    }
 }
 
 @keyframes CardAnimation {
@@ -16,10 +22,10 @@
 .Card {
     color: aliceblue;
     background-color: rgb(27, 28, 34);
-    height: 80vh;
     width: 80vw;
     border-radius: 15px;
     padding: 5px;
+    padding-bottom: 45px;
     transition: .3s;
     animation-name: CardAnimation;
     animation-duration: .7s;
@@ -43,53 +49,9 @@
 
 .weather {
     align-self: flex-start;
-    margin-left: 60px;
+    margin-left: 40px;
     font-size: 50px;
     transition: .3s;
-}
-
-.searchInput {
-    background-color: rgba(238, 228, 228, 0.322);
-    color: aliceblue;
-    font-size: 18px;
-    font-weight: bold;
-    border: 0;
-    border-radius: 10px;
-    margin-top: 30px;
-    padding: 12px;
-    width: 60vw;
-    transition: .3s;
-}
-
-@media screen and (min-width: 1000px) {
-    .searchInput {
-       width: 30vw !important;
-    }
-}
-
-.searchInput:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px aliceblue;
-}
-
-.searchButton {
-    font-size: 20px;
-    padding: 10px 12px 10px 12px;
-    background-color: rgba(238, 228, 228, 0.322);
-    border-radius: 20px;
-    margin-left: 10px;
-    transition: .3s;
-}
-
-.searchButton:hover {
-    cursor: pointer;
-    color: rgb(181, 188, 194);
-    background-color: rgba(175, 169, 169, 0.322);
-}
-
-.searchButton:active {
-    color: rgb(118, 125, 129);
-    background-color: rgba(133, 126, 126, 0.322);
 }
 
 @media screen and (min-width : 1000px) {
@@ -103,10 +65,34 @@
 }
 
 .sideInformations {
+    
+    font-size: 25px;
+    transition: .3s;
+}
+
+.weatherInfo {
     display: flex;
+    align-items: center;
+    padding: 3px;
+    transition: .3s;
 }
 
 .dropIcon {
     font-size: 35px;
+    margin-left: 5px;
+    padding-right: 10px;
+    transition: .3s;
+}
+
+.weatherIcon {
+
+   transition: .3s;
+}
+
+.windIcon {
+    font-size: 35px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 5px;
     transition: .3s;
 }
