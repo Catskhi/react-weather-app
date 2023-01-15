@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchInput from './SearchInput';
 
 import styles from './DisplayCard.module.css'
@@ -12,9 +12,8 @@ export default function DisplayCard (props: IDisplayCardProps) {
   
   useEffect(() => {
     if (weatherData) {
+      console.log('The data about the city:')
       console.log(weatherData)
-      console.log(weatherData.main.temp)
-      console.log(weatherData.wind.speed)
     }
   }, [weatherData])
 
@@ -26,8 +25,12 @@ export default function DisplayCard (props: IDisplayCardProps) {
       + '&units=metric'
 
       const response = await fetch(url)
-      const data = await response.json()
-      setWeatherData(data)
+      if (response.ok) {
+        const data = await response.json()
+        setWeatherData(data)
+      } else {
+        alert('Invalid city name!')
+      }
     }
   }
 
@@ -46,7 +49,7 @@ export default function DisplayCard (props: IDisplayCardProps) {
         </h2>
         {weatherData && <div className={styles.sideInformations}>
             <div className={styles.weatherInfo}>
-              <img 
+              <img alt='weatherIcon'
               className={styles.weatherIcon}
               src={'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '.png'}/>{weatherData.weather[0].description}
             </div>
