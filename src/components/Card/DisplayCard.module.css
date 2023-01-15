@@ -101,3 +101,12 @@
         width: 500px;
     }
 }
+
+.sideInformations {
+    display: flex;
+}
+
+.dropIcon {
+    font-size: 35px;
+    transition: .3s;
+}
